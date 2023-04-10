@@ -1,3 +1,4 @@
+import 'package:chatbot_app/views/screens/my_home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,16 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const MyHomeScreen(),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
