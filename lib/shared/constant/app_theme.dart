@@ -1,5 +1,4 @@
-
-import 'package:chatbot_app/core/constant/color.dart';
+import 'package:e_commerce/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 ThemeData themeEnglish = ThemeData(
