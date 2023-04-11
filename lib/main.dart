@@ -1,4 +1,4 @@
-import 'package:chatbot_app/views/screens/my_home_screen.dart';
+import 'package:chatbot_app/views/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
