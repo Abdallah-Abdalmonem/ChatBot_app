@@ -3,10 +3,6 @@
     <!-- xmlns:tools="http://schemes.android.com/tools" -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <queries>
-        <package android:name="com.facebook.katana" />
-        <package android:name="com.facebook.wakizashi" />
-        </queries>
    <application
         android:label="chatbot_app"
         android:name="${applicationName}"
@@ -40,5 +36,11 @@
             
             <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
             <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+
+        <queries>
+                <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
+                <provider android:authorities="com.facebook.orca.provider.PlatformProvider" />
+        </queries>
+
     </application>
 </manifest>

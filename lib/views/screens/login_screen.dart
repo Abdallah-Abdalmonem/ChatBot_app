@@ -50,9 +50,11 @@ class _LoginScreenState extends State<LoginScreen> {
 // or FacebookAuth.i.accessToken
                                 if (accessToken != null) {
                                   print('user is logged');
+                                } else {
+                                  print('user is Not logged');
                                 }
                               },
-                              child: Text('test')),
+                              child: Text('check login')),
                           ElevatedButton(
                               onPressed: () async {
 //                                 final LoginResult result = await FacebookAuth
@@ -85,7 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       'Error logging in with Facebook: ${result.message}');
                                 }
                                 // }
-
+                                print(
+                                    '${_accessToken!.userId.toString()} !!!!!!!!!!!!!!');
                                 setState(() {});
                               },
                               child: const Text('Login with facebook')),
