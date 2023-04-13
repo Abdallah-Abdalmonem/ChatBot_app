@@ -1,4 +1,3 @@
-List<dynamic> sreach = [];
-
-List<dynamic> science = [];
-// List<dynamic> business = [];
+var postsId = [];
+var commentsId = [];
+int numComment = 0;

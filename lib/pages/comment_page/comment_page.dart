@@ -9,15 +9,15 @@ import 'bloc_comment/comment_cubit.dart';
 import 'bloc_comment/comment_state.dart';
 import 'package:http/http.dart' as http;
 
-
-
 class CommentScreen extends StatelessWidget {
   var commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CommentCubit(),
+      create: (context) {
+        return CommentCubit();
+      },
       child: BlocConsumer<CommentCubit, CommentState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -84,9 +84,21 @@ class CommentScreen extends StatelessWidget {
                   width: double.infinity,
                 ),
                 defaultButton(
-                  onPressed: () {
-                    bloc.getPostsAndcomment();
-                    
+                  onPressed: () async {
+                    await bloc.getPosts().then((value) async {});
+                    await bloc.getCommentId();
+
+                    await bloc.addComment();
+                  },
+                  text: 'ارسال',
+                ),
+                const SizedBox(
+                  height: 20,
+                  width: double.infinity,
+                ),
+                defaultButton(
+                  onPressed: () async {
+                    await bloc.getCommentId();
                   },
                   text: 'ارسال',
                 )
