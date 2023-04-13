@@ -38,6 +38,7 @@ dependencies:
   flutter_facebook_auth: ^5.0.8
   http: ^0.13.5
   shared_preferences: ^2.0.20
+  conditional_builder: ^1.0.2
   
 
 dev_dependencies:

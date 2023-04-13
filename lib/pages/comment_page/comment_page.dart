@@ -1,6 +1,8 @@
 import 'package:chatbot_app/shared/constant/image_assets.dart';
 import 'package:chatbot_app/shared/network/local/componant/button.dart';
+import 'package:chatbot_app/shared/network/local/componant/list_item.dart';
 import 'package:chatbot_app/shared/network/local/componant/textfromfield.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,87 +24,32 @@ class CommentScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var bloc = CommentCubit.get(context);
-          return Scaffold(
-            body: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 25,
-                  width: double.infinity,
-                ),
-                Container(
-                    height: 180,
-                    width: 180,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          30,
-                        ),
-                      ),
-                    ),
-                    child: const Image(
-                      image: AssetImage(
-                        AppImageAsset.appIcon,
-                      ),
-                    )),
-                const SizedBox(
-                  height: 13,
-                  width: double.infinity,
-                ),
-                Container(
-                  height: 60,
-                  width: 240,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        30,
-                      ),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'التعليق التلقائي',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                SizedBox(
-                  width: 250,
-                  child: defaultTextFormField(
-                    labelText: 'تعليق',
-                    textController: commentController,
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                  width: double.infinity,
-                ),
-                defaultButton(
-                  onPressed: () async {
-                    await bloc.getPosts().then((value) async {});
-                    await bloc.getCommentId();
+          var data;
 
-                    await bloc.addComment();
-                  },
-                  text: 'ارسال',
+          bloc.getPosts().then((value) async {
+            print('mo !!!!!!!!!!!!!!!!!!!');
+            data = await value;
+            print(data);
+          });
+          return Scaffold(
+            body: ConditionalBuilder(
+              condition: data == null,
+              builder: (context) => ListView.separated(
+                itemBuilder: (context, index) => listItem(
+                  image: data['posts']['data'][index]['full_picture'],
+                  date: data['posts']['data'][index]['created_time'],
+                  title: data['posts']['data'][index]['message'],
                 ),
-                const SizedBox(
-                  height: 20,
-                  width: double.infinity,
-                ),
-                defaultButton(
-                  onPressed: () async {
-                    await bloc.getCommentId();
-                  },
-                  text: 'ارسال',
-                )
-              ],
+                itemCount: data['posts']['data'].length,
+                separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(
+                    height: 20,
+                  );
+                },
+              ),
+              fallback: (context) => const Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
           );
         },

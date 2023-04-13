@@ -7,7 +7,7 @@ class Http {
     required String accessToken,
   }) async {
     Uri uri = Uri.parse(
-        'https://graph.facebook.com/me?fields=posts{id,comments{id}}&access_token=$accessToken');
+        'https://graph.facebook.com/me?fields=posts{full_picture,message,created_time}&access_token=$accessToken');
 
     var response = await http.get(uri);
     var responseBody = jsonDecode(response.body);
