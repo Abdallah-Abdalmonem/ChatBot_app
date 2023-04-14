@@ -33,7 +33,7 @@ class Http {
     required String postId,
   }) async {
     Uri uri = Uri.parse(
-        'https://graph.facebook.com/v12.0/$postId/comments?access_token=$accessToken');
+        'https://graph.facebook.com/v12.0/$postId?fields=comments{from,message,id,is_hidden}&access_token=$accessToken');
 
     var response = await http.get(uri);
     var responseBody = jsonDecode(response.body);
@@ -57,7 +57,28 @@ class Http {
     
   }
 
+  static  hideComment({required String commentId,required String accessToken}) async {
+    final String url = 'https://graph.facebook.com/v12.0/$commentId';
 
+    final Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+
+    final Map<String, dynamic> body = {
+      'is_hidden': true,
+      'access_token': accessToken,
+    };
+
+    final http.Response response = await http.post(Uri.parse(url),
+        headers: headers, body: jsonEncode(body));
+
+    if (response.statusCode == 200) {
+      print('Comment with ID $commentId has been hidden.');
+    } else {
+      print(
+          'Failed to hide comment with ID $commentId. Response: ${response.body}');
+    }
+  }
 
   void createPostWithImage(String pageId, String accessToken, String message, String imagePath) async {
   final String url = 'https://graph.facebook.com/v12.0/$pageId/photos';

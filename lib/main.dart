@@ -1,5 +1,5 @@
 
-import 'package:chatbot_app/pages/comment_page/comment_page.dart';
+import 'package:chatbot_app/pages/post_page/posts_page.dart';
 import 'package:chatbot_app/shared/network/remote/dio_helper.dart';
 
 
@@ -24,10 +24,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: CommentScreen(),
+      home: PostsScreen(),
 
       // home: LoginScreen(),
 
     );
   }
 }
+
+//محمد حسن
