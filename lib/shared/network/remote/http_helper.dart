@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:chatbot_app/shared/network/local/lists.dart';
 import 'package:http/http.dart' as http;
 
 class Http {
@@ -13,19 +14,6 @@ class Http {
     var responseBody = jsonDecode(response.body);
 
     return responseBody;
-  }
-
-  static Future getNumComment({
-    required String accessToken,
-    required String postId,
-  }) async {
-    Uri uri = Uri.parse(
-        'https://graph.facebook.com/v12.0/$postId/comments?summary=1&access_token=$accessToken');
-
-    var response = await http.get(uri);
-    var responseBody = jsonDecode(response.body);
-
-    return responseBody['summary']['total_count'];
   }
 
   static Future getComment({
@@ -51,13 +39,12 @@ class Http {
     final Map<String, String> headers = {"Content-Type": "application/json"};
     final Map<String, String> body = {"message": message};
     var response = await http.post(Uri.parse(url),
-        headers: headers, 
-        body: jsonEncode(body));
+        headers: headers, body: jsonEncode(body));
     final dynamic data = jsonDecode(response.body);
-    
   }
 
-  static  hideComment({required String commentId,required String accessToken}) async {
+  static hideComment(
+      {required String commentId, required String accessToken}) async {
     final String url = 'https://graph.facebook.com/v12.0/$commentId';
 
     final Map<String, String> headers = {
@@ -80,17 +67,36 @@ class Http {
     }
   }
 
-  void createPostWithImage(String pageId, String accessToken, String message, String imagePath) async {
-  final String url = 'https://graph.facebook.com/v12.0/$pageId/photos';
-  final http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse(url))
-    ..fields['message'] = message
-    ..fields['access_token'] = accessToken
-    ..files.add(await http.MultipartFile.fromPath('source', imagePath));
+  static Future<String> createPost({
+    required  String pageId, required String message, required String accessToken}) async {
+    var url = 'https://graph.facebook.com/v13.0/$pageId/feed';
 
-  final http.StreamedResponse response = await request.send();
-  final dynamic data = await response.stream.bytesToString();
-  print(data);
-}
+    var response = await http.post(Uri.parse(url), body: {
+      'message': message,
+      'access_token': accessToken,
+    });
+
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      return jsonResponse['id'];
+    } else {
+      throw Exception('Failed to create post.');
+    }
+  }
+
+  static Future createPostWithImage({required String pageId, required String accessToken, required String message,
+      required String imagePath}) async {
+    final String url = 'https://graph.facebook.com/v12.0/$pageId/photos';
+    final http.MultipartRequest request =
+        http.MultipartRequest('POST', Uri.parse(url))
+          ..fields['message'] = message
+          ..fields['access_token'] = accessToken
+          ..files.add(await http.MultipartFile.fromPath('source', imagePath));
+
+    final http.StreamedResponse response = await request.send();
+    final dynamic data = await response.stream.bytesToString();
+    print(data);
+  }
 }
 
 

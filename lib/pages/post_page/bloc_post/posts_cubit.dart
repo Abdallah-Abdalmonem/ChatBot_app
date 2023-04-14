@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PostCubit extends Cubit<PostState> {
-  final accessToken = 'EAAJs0OWZCy6YBAIrZA0wOWBh83MZBnoS9SU9s8EA2Y8HZCmMBtTsd1lABdfpL1To17RZBvuiBhx9wrHXmyEuhHeT443bera3hwxjUkSZBlBmioHCBFpKNmw6fB7VfYhQrTdUZACymZBAZAJhbapLfH5U4IaismBZAihJHUtENweoGMBHtZAG47h19GJGg38qZCdMG9Q2fZBwxahX0Oleb6ECiZA6Ix';
+  
   PostCubit() : super(InitialState());
   static PostCubit get(context) => BlocProvider.of(context);
 

@@ -28,6 +28,9 @@ class CommentScreen extends StatelessWidget {
           bloc.getComments(postId: postId).then((value) async {
             data = await value;
           });
+          print('mo!!!!!!!??????????????');
+
+
           return Scaffold(
             body: ConditionalBuilder(
               condition: data != null,

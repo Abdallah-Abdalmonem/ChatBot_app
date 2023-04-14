@@ -4,8 +4,8 @@ import 'package:chatbot_app/shared/network/remote/http_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CommentCubit extends Cubit<CommentState> {
-  final accessToken = 'EAAJs0OWZCy6YBAIrZA0wOWBh83MZBnoS9SU9s8EA2Y8HZCmMBtTsd1lABdfpL1To17RZBvuiBhx9wrHXmyEuhHeT443bera3hwxjUkSZBlBmioHCBFpKNmw6fB7VfYhQrTdUZACymZBAZAJhbapLfH5U4IaismBZAihJHUtENweoGMBHtZAG47h19GJGg38qZCdMG9Q2fZBwxahX0Oleb6ECiZA6Ix';
-  CommentCubit() : super(InitialState());
+  
+   CommentCubit() : super(InitialState());
   static CommentCubit get(context) => BlocProvider.of(context);
 
   Future<void> addComment() async {
