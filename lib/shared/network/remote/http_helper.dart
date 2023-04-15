@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:chatbot_app/shared/network/local/lists.dart';
+import 'package:chatbot_app/shared/constant/values.dart';
 import 'package:http/http.dart' as http;
 
 class Http {

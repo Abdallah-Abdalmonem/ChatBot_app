@@ -1,6 +1,6 @@
 import 'package:chatbot_app/shared/constant/image_assets.dart';
 import 'package:chatbot_app/shared/network/local/componant/button.dart';
-import 'package:chatbot_app/shared/network/local/componant/list_item.dart';
+import 'package:chatbot_app/shared/network/local/componant/post_item.dart';
 import 'package:chatbot_app/shared/network/local/componant/textfromfield.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 

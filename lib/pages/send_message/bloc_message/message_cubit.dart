@@ -1,7 +1,7 @@
 
 import 'package:chatbot_app/pages/send_message/bloc_message/message_state.dart';
 
-import 'package:chatbot_app/shared/network/local/lists.dart';
+import 'package:chatbot_app/shared/constant/values.dart';
 
 import 'package:chatbot_app/shared/network/remote/http_helper.dart';
 import 'package:flutter/material.dart';

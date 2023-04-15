@@ -1,5 +1,5 @@
 import 'package:chatbot_app/pages/comment_page/bloc_comment/comment_state.dart';
-import 'package:chatbot_app/shared/network/local/lists.dart';
+import 'package:chatbot_app/shared/constant/values.dart';
 import 'package:chatbot_app/shared/network/remote/http_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
