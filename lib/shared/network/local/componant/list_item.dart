@@ -1,8 +1,19 @@
+import 'package:chatbot_app/pages/comment_page/comment_page.dart';
 import 'package:flutter/material.dart';
+import 'package:chatbot_app/shared/network/local/componant/navigate_to.dart';
 
-Widget listItem({required image, required title,required date}) => InkWell(
+Widget listItem(
+        {required image,
+        required title,
+        required date,
+        required postId,
+        context}) =>
+    InkWell(
       onTap: () {
-        // navigateto(context: context, wiget: Webview(url: list['url'], ));
+        navigateTo(
+          context: context,
+          wiget: CommentScreen(postId: postId),
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(right: 20, left: 20),
@@ -20,7 +31,7 @@ Widget listItem({required image, required title,required date}) => InkWell(
               ),
               child: Image(
                 image: NetworkImage(
-                  '''${image}''',
+                  '''${image??'https://th.bing.com/th/id/R.ebe12dc32db7d3a0089ce0f1c5b0caea?rik=gatB2Ut7aWOLtg&riu=http%3a%2f%2f3.bp.blogspot.com%2f-EzeswpQ0o7M%2fURusTcu183I%2fAAAAAAAAACQ%2fU6b9mbyvO-4%2fs1600%2ffacebook%2blogo%2b7.jpg&ehk=d8y3tYTW51sJk69QOxaCsmrcJdamfbydV0WUyIMk7EM%3d&risl=&pid=ImgRaw&r=0'}''',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -35,20 +46,24 @@ Widget listItem({required image, required title,required date}) => InkWell(
                 children: [
                   Expanded(
                     child: Builder(builder: (context) {
-                      return Text(
-                        '''$title''',
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyText1,
+                      return Center(
+                        child: Text(
+                          '''$title''',
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
                       );
                     }),
                   ),
-                  Text(
-                    '''$date''',
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.grey,
+                  Center(
+                    child: Text(
+                      '''$date''',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ],

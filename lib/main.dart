@@ -1,14 +1,17 @@
-
-import 'package:chatbot_app/pages/comment_page/comment_page.dart';
+import 'package:chatbot_app/pages/post_page/posts_page.dart';
+import 'package:chatbot_app/shared/bloc_observes.dart';
 import 'package:chatbot_app/shared/network/remote/dio_helper.dart';
-
-
+import 'package:chatbot_app/shared/themes/light_mode.dart';
 import 'package:chatbot_app/views/screens/login_screen.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'pages/send_message/message_page.dart';
 
 void main() {
   DioHelper.init();
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
@@ -19,15 +22,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: lightThem(),
+      themeMode: ThemeMode.light,
 
-      home: CommentScreen(),
+      home: PostsScreen(),
 
       // home: LoginScreen(),
 
+      // home: MessageScreen(),
     );
   }
 }
+
+//محمد حسن

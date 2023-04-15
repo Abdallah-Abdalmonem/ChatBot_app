@@ -2,13 +2,6 @@ abstract class CommentState {}
 
 class InitialState extends CommentState {}
 
-class LoadingGetPostsState extends CommentState {}
-
-class SuccessGetPostsState extends CommentState {}
-class ErrorGetPostsState extends CommentState {
-  final String error;
-  ErrorGetPostsState(this.error);
-}
 
 class LoadingGetCommentState extends CommentState {}
 
@@ -29,11 +22,11 @@ class ErrorAddCommentState extends CommentState {
 }
 
 
-class LoadingGetNumberCommentState extends CommentState {}
+class LoadingHideCommentState extends CommentState {}
 
-class SuccessGetNumberCommentState extends CommentState {}
+class SuccessHideCommentState extends CommentState {}
 
-class ErrorGetNumberCommentState extends CommentState {
+class ErrorHideCommentState extends CommentState {
   final String error;
-  ErrorGetNumberCommentState(this.error);
+  ErrorHideCommentState(this.error);
 }
