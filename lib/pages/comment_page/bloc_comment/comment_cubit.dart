@@ -32,15 +32,15 @@ class CommentCubit extends Cubit<CommentState> {
     emit(LoadingGetCommentState());
     await Http.getComment(accessToken: accessToken, postId: postId)
         .then((value) async {
-      print(value);
+      // print(value);
       print('comment id!!!!!!!!!!!!!!!');
-      if (value['data'] != null) {
-        for (int i = 0; i < value['data'].length; i++) {
-          commentsId.add(value['data'][i]['id']);
-          print('comment id');
-          print(commentsId[i]);
-        }
-      }
+      // if (value['comments']['data'] != null) {
+      //   for (int i = 0; i < value['comments']['data'].length; i++) {
+      //     commentsId.add(value['comments']['data'][i]['id']);
+      //     print('comment id');
+      //     print(commentsId[i]);
+      //   }
+      // }
       data = await value;
       emit(SuccessGetCommentState());
     }).catchError((error) {
@@ -50,9 +50,9 @@ class CommentCubit extends Cubit<CommentState> {
     return data;
   }
 
-  Future<void> hidenComment({required commentId}) async {
+  Future<void> hidenComment({required commentId, required bool isHidden}) async {
     emit(LoadingHideCommentState());
-    await Http.hideComment(accessToken: accessToken, commentId: commentId)
+    await Http.hideComment(accessToken: accessToken, is_hidden: isHidden, commentId: commentId)
         .then((value) {
       print(value);
       print('comment is hiden now!!!!!!!!!!!!!!!');

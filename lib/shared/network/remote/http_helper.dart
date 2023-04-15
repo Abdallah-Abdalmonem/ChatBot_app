@@ -44,7 +44,8 @@ class Http {
   }
 
   static hideComment(
-      {required String commentId, required String accessToken}) async {
+      {required String commentId,
+      required bool is_hidden, required String accessToken}) async {
     final String url = 'https://graph.facebook.com/v12.0/$commentId';
 
     final Map<String, String> headers = {
@@ -52,7 +53,7 @@ class Http {
     };
 
     final Map<String, dynamic> body = {
-      'is_hidden': true,
+      'is_hidden': is_hidden,
       'access_token': accessToken,
     };
 

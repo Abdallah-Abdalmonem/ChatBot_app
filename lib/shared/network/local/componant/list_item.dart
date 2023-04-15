@@ -31,7 +31,7 @@ Widget listItem(
               ),
               child: Image(
                 image: NetworkImage(
-                  '''${image}''',
+                  '''${image??'https://th.bing.com/th/id/R.ebe12dc32db7d3a0089ce0f1c5b0caea?rik=gatB2Ut7aWOLtg&riu=http%3a%2f%2f3.bp.blogspot.com%2f-EzeswpQ0o7M%2fURusTcu183I%2fAAAAAAAAACQ%2fU6b9mbyvO-4%2fs1600%2ffacebook%2blogo%2b7.jpg&ehk=d8y3tYTW51sJk69QOxaCsmrcJdamfbydV0WUyIMk7EM%3d&risl=&pid=ImgRaw&r=0'}''',
                 ),
                 fit: BoxFit.cover,
               ),

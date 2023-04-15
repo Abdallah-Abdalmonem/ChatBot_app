@@ -11,11 +11,12 @@ import 'bloc_comment/comment_state.dart';
 
 class CommentScreen extends StatelessWidget {
   final postId;
-  CommentScreen({super.key, required  this.postId});
+  CommentScreen({super.key, required this.postId});
   var commentController = TextEditingController();
-  var data;
+  var data = null;
   @override
   Widget build(BuildContext context) {
+    
     return BlocProvider(
       create: (context) {
         return CommentCubit();
@@ -30,30 +31,45 @@ class CommentScreen extends StatelessWidget {
           });
           print('mo!!!!!!!??????????????');
 
-
-          return Scaffold(
-            body: ConditionalBuilder(
-              condition: data != null,
-              builder: (context) => ListView.separated(
-                itemBuilder: (context, index) => commentListItem(
-                  comment: data['comments']['data'][index]['message'],
-                  commentId:data['comments']['data'][index]['id'], 
-                  isShow:data['comments']['data'][index]['is_hidden'], 
-                  name:data['comments']['data'][index]['from']['name'], 
-                  context: context,
+          if (state is SuccessGetCommentState) {
+            return Scaffold(
+              body: ConditionalBuilder(
+                condition: data != null && data['comments']['data'].length > 0,
+                builder: (context) => ListView.separated(
+                  itemBuilder: (context, index) => commentListItem(
+                    comment: data['comments']['data'][index]['message'],
+                    commentId: data['comments']['data'][index]['id'],
+                    isHidden: data['comments']['data'][index]['is_hidden'],
+                    name:
+                        data['comments']['data'][index]['from']['name'] == null
+                            ? ''
+                            : data['comments']['data'][index]['from']['name'],
+                    context: context,
+                  ),
+                  itemCount: data['comments']['data'].length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(
+                      height: 10,
+                    );
+                  },
                 ),
-                itemCount: data['comments']['data'].length,
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(
-                    height: 20,
-                  );
-                },
+                fallback: (context) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
-              fallback: (context) => const Center(
-                child: CircularProgressIndicator(),
+            );
+          } else if (state is ErrorGetCommentState) {
+            return Scaffold(
+              body: Center(
+                child: Text('error'),
               ),
-            ),
-          );
+            );
+          }else{
+                        return Scaffold(
+              body:  const Center(
+                  child: CircularProgressIndicator(),)
+            );
+          }
         },
       ),
     );

@@ -1,18 +1,16 @@
 import 'package:chatbot_app/pages/comment_page/bloc_comment/comment_cubit.dart';
 import 'package:flutter/material.dart';
 
-IconData icon = Icons.remove_red_eye;
+IconData icon = Icons.lock;
 
 Widget commentListItem(
         {required comment,
-        required name,
+        required  name ,
         required commentId,
-        required isShow,
+        required isHidden,
         context}) =>
-    InkWell(
-      onTap: () {
-        // navigateto(context: context, wiget: Webview(url: list['url'], ));
-      },
+    Card(
+      elevation: 7,
       child: Container(
         margin: const EdgeInsets.only(right: 20, left: 20),
         height: 80,
@@ -21,16 +19,16 @@ Widget commentListItem(
             IconButton(
                 onPressed: () {
                   
-                  if (isShow) {
-                    isShow = !isShow;
-                    icon = Icons.remove_red_eye;
+                  if (isHidden) {
+                    isHidden = !isHidden;
+                    
                   } else {
-                    icon = Icons.lock;
-                    isShow = !isShow;
+                    
+                    isHidden = !isHidden;
                   }
-                  CommentCubit.get(context).hidenComment(commentId: commentId);
+                  CommentCubit.get(context).hidenComment(commentId: commentId, isHidden: isHidden );
                 },
-                icon: Icon(icon)),
+                icon: Icon(isHidden?icon = icon = Icons.lock: Icons.remove_red_eye)),
             const SizedBox(
               width: 20,
             ),
@@ -46,7 +44,7 @@ Widget commentListItem(
                           '''$comment''',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodyText1,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                       );
                     }),

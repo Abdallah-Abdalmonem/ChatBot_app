@@ -4,12 +4,12 @@ import 'package:flutter/services.dart';
 ThemeData lightThem() {
   return ThemeData(
     
-    primarySwatch: Colors.deepOrange,
+    primarySwatch: Colors.deepPurple,
     appBarTheme: const AppBarTheme(
       iconTheme: IconThemeData(
         color: Colors.black,
       ),
-      color: Colors.white,
+      color: Colors.purple,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.white10,
         statusBarIconBrightness: Brightness.dark,
@@ -31,12 +31,13 @@ ThemeData lightThem() {
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.pinkAccent,
       type: BottomNavigationBarType.fixed,
       selectedIconTheme: IconThemeData(
         color: Colors.deepOrangeAccent,
       ),
       elevation: 20,
     ),
+    scaffoldBackgroundColor: Colors.purple,
   );
 }
