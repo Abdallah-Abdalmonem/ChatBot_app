@@ -1,9 +1,12 @@
 import 'package:chat_bot/core/constant/app_routes.dart';
+import 'package:chat_bot/core/constant/app_theme.dart';
 import 'package:chat_bot/views/screens/home_screen.dart';
 import 'package:chat_bot/views/screens/login_screen.dart';
 import 'package:chat_bot/views/screens/posts_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'views/screens/onboarding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,11 +20,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: themeArabic,
       routes: routes,
-      home: LoginScreen(),
+      home: OnBoarding(),
     );
   }
 }

@@ -27,14 +27,14 @@ class itemPost extends StatelessWidget {
         horizontalTitleGap: 8,
         textColor: AppColor.textTitleColor,
         title: Text(
-          '$title' ?? '',
+          '$title',
           style: const TextStyle(
             fontSize: 18,
             letterSpacing: 1,
           ),
         ),
         subtitle: Text(
-          '$date' ?? '',
+          '$date',
           style: const TextStyle(
             color: AppColor.textSubtitleColor,
             letterSpacing: 4,

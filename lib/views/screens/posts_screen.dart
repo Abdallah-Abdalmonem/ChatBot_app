@@ -10,25 +10,25 @@ class PostsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // GetPostsControllerImp controller = Get.find();
-    print('before scaffold');
     return Scaffold(
       backgroundColor: AppColor.buttonblue,
-      body: SafeArea(
-        child: GetBuilder<GetPostsControllerImp>(builder: (a) {
-          return ListView.builder(
-            itemCount: a.posts!.length,
-            itemBuilder: (context, index) {
-              return itemPost(
-                  // title: '${a.data!['posts']['data'][index]['message']}',
-                  title: '${a.posts![index]['message']}',
-                  date: '${a.posts![index]['created_time']}',
-                  onPress: () {
-                    print('object $index');
-                  });
-            },
-          );
-        }),
+      appBar: AppBar(
+        title: Text("Posts"),
       ),
+      body: GetBuilder<GetPostsControllerImp>(builder: (a) {
+        return ListView.builder(
+          itemCount: a.posts.length,
+          itemBuilder: (context, index) {
+            return itemPost(
+                // title: '${a.data!['posts']['data'][index]['message']}',
+                title: '${a.posts[index]['message']}',
+                date: '${a.posts[index]['created_time']}',
+                onPress: () {
+                  print('object $index');
+                });
+          },
+        );
+      }),
     );
   }
 }

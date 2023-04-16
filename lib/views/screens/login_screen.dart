@@ -1,4 +1,4 @@
-import 'package:chat_bot/controller/login_facebook.dart';
+import 'package:chat_bot/controller/login_facebook_Controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
@@ -14,17 +14,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  AccessToken? _accessToken;
-
-  UserModel? _currentUser;
-
   @override
   Widget build(BuildContext context) {
     LoginControllerImp controller = Get.put(LoginControllerImp());
     return Scaffold(
         backgroundColor: AppColor.blue,
         appBar: AppBar(
-          title: Text("Facebook Login"),
+          title: const Text("Facebook Login"),
         ),
         body: SafeArea(
           child: Center(
