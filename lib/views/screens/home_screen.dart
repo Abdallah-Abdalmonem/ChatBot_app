@@ -1,41 +1,43 @@
-import 'package:chatbot_app/data/models/user_model.dart';
-import 'package:chatbot_app/shared/constant/color.dart';
-import 'package:chatbot_app/shared/network/local/componant/navigate_to.dart';
-import 'package:chatbot_app/views/screens/posts/cubit/posts_cubit.dart';
-import 'package:chatbot_app/views/screens/posts/posts_screen.dart';
-import 'package:chatbot_app/views/widgets/post_item.dart';
+import 'package:chat_bot/core/constant/color.dart';
+import 'package:chat_bot/core/constant/lists.dart';
+import 'package:chat_bot/core/helper/api.dart';
+import 'package:chat_bot/models/user_model.dart';
+import 'package:chat_bot/services/get_posts.dart';
+import 'package:chat_bot/views/screens/posts_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart';
+
+import '../../controller/get_posts_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  UserModel? _currentUser;
-  var data = null;
+  // UserModel? _currentUser;
+  // var data = null;
   @override
   Widget build(BuildContext context) {
+    GetPostsControllerImp controller = Get.put(GetPostsControllerImp());
     return Scaffold(
-      backgroundColor: AppColor.buttonblue,
+      backgroundColor: AppColor.white,
       body: SafeArea(
-        child: BlocListener<PostsCubit, PostsState>(
-          listener: (context, state) async {
-            await BlocProvider.of<PostsCubit>(context).getPost();
-          },
-          child: Center(
-              child: TextButton(
-            child: Text('Home Screen'),
-            onPressed: () async {
-              // await BlocProvider.of<PostsCubit>(context).getPost();
-              if (data == null) {
-                data = BlocProvider.of<PostsCubit>(context).getPost();
-              }
-
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PostsScreen(),
-                  ));
-            },
-          )),
+        child: Center(
+          child: Column(
+            children: [
+              ElevatedButton(
+                child: Text('Home Screen'),
+                onPressed: () async {
+                  controller.getPosts();
+                  Get.to(PostsScreen());
+                },
+              ),
+              ElevatedButton(
+                child: Text('print'),
+                onPressed: () async {
+                  controller.getPosts();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

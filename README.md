@@ -1,4 +1,4 @@
-# chatbot_app
+# chat_bot
 
 A new Flutter project.
 

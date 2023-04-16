@@ -1,10 +1,9 @@
+import 'package:chat_bot/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
-import '../../shared/constant/color.dart';
-
 class itemPost extends StatelessWidget {
-  String title;
-  String date;
+  String title = '';
+  String date = '';
   void Function()? onPress;
 
   itemPost({
@@ -20,23 +19,23 @@ class itemPost extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         color: AppColor.itemPost,
       ),
-      padding: EdgeInsets.all(4),
-      margin: EdgeInsets.all(4),
+      padding: const EdgeInsets.all(4),
+      margin: const EdgeInsets.all(4),
       child: ListTile(
         iconColor: AppColor.iconColor,
         // tileColor: AppColor.black,
         horizontalTitleGap: 8,
         textColor: AppColor.textTitleColor,
         title: Text(
-          'Post:\t\t$title',
-          style: TextStyle(
+          '$title' ?? '',
+          style: const TextStyle(
             fontSize: 18,
             letterSpacing: 1,
           ),
         ),
         subtitle: Text(
-          'Data:\t$date',
-          style: TextStyle(
+          '$date' ?? '',
+          style: const TextStyle(
             color: AppColor.textSubtitleColor,
             letterSpacing: 4,
           ),

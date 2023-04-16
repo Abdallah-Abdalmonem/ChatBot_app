@@ -1,6 +1,6 @@
 {
-    "name": "chatbot_app",
-    "short_name": "chatbot_app",
+    "name": "chat_bot",
+    "short_name": "chat_bot",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

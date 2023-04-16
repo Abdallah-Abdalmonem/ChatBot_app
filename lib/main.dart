@@ -1,39 +1,27 @@
-import 'package:chatbot_app/pages/post_page/posts_page.dart';
-import 'package:chatbot_app/shared/bloc_observes.dart';
-import 'package:chatbot_app/shared/network/remote/dio_helper.dart';
-import 'package:chatbot_app/shared/themes/light_mode.dart';
-import 'package:chatbot_app/views/screens/home_screen.dart';
-import 'package:chatbot_app/views/screens/posts/cubit/posts_cubit.dart';
-import 'package:chatbot_app/views/screens/posts/posts_screen.dart';
-
+import 'package:chat_bot/core/constant/app_routes.dart';
+import 'package:chat_bot/views/screens/home_screen.dart';
+import 'package:chat_bot/views/screens/login_screen.dart';
+import 'package:chat_bot/views/screens/posts_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 void main() {
-  DioHelper.init();
-  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: lightThem(),
-      themeMode: ThemeMode.light,
-
-      home: BlocProvider<PostsCubit>(
-        create: (context) => PostsCubit(),
-        child: HomeScreen(),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
-
-      // home: MessageScreen(),
+      routes: routes,
+      home: LoginScreen(),
     );
   }
 }
-
-//محمد حسن
