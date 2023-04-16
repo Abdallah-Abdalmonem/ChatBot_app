@@ -1,31 +1,31 @@
-class Temperatures {
-  Temperatures({
-    required this.posts,
+class PostsModel {
+  final String id;
+  final String message;
+  final String fullPicture;
+  final String createdTime;
+
+  PostsModel({
     required this.id,
-  });
-
-  Posts posts;
-  String id;
-}
-
-class Posts {
-  Posts({
-    required this.data,
-  });
-
-  List<Datum> data;
-}
-
-class Datum {
-  Datum({
-    this.fullPicture,
     required this.message,
+    required this.fullPicture,
     required this.createdTime,
-    required this.id,
   });
 
-  String? fullPicture;
-  String message;
-  String createdTime;
-  String id;
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'message': message,
+      'fullPicture': fullPicture,
+      'createdTime': createdTime,
+    };
+  }
+
+  factory PostsModel.fromJson(Map<String, dynamic> map) {
+    return PostsModel(
+      id: map['id'] ?? '',
+      message: map['message'] ?? '',
+      fullPicture: map["fullPicture"] ?? '',
+      createdTime: map["createdTime"] ?? '',
+    );
+  }
 }
