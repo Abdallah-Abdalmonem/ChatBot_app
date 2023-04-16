@@ -24,15 +24,15 @@ ThemeData themeArabic = ThemeData(
   textTheme: const TextTheme(
     displayLarge: TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 22,
+      fontSize: 30,
       color: AppColor.black,
     ),
     bodyLarge: TextStyle(
       height: 2,
-      color: AppColor.grey,
+      color: AppColor.black,
       fontWeight: FontWeight.bold,
-      fontSize: 17,
+      fontSize: 20,
     ),
   ),
-  primarySwatch: Colors.blue,
+  primarySwatch: Colors.deepPurple,
 );
