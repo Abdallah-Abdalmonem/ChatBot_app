@@ -19,25 +19,12 @@ class HomeScreen extends StatelessWidget {
     GetPostsControllerImp controller = Get.put(GetPostsControllerImp());
     return Scaffold(
       backgroundColor: AppColor.white,
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              ElevatedButton(
-                child: Text('Home Screen'),
-                onPressed: () async {
-                  controller.getPosts();
-                  Get.to(PostsScreen());
-                },
-              ),
-              ElevatedButton(
-                child: Text('print'),
-                onPressed: () async {
-                  controller.getPosts();
-                },
-              ),
-            ],
-          ),
+      appBar: AppBar(
+        title: Text("Home Screen"),
+      ),
+      body: Center(
+        child: Column(
+          children: [],
         ),
       ),
     );
