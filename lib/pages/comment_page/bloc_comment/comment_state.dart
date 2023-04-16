@@ -30,3 +30,8 @@ class ErrorHideCommentState extends CommentState {
   final String error;
   ErrorHideCommentState(this.error);
 }
+
+
+class CommentIconHidenState extends CommentState {}
+
+class CommentIconNotHidenState extends CommentState {}

@@ -1,13 +1,13 @@
 import 'package:chatbot_app/pages/comment_page/bloc_comment/comment_cubit.dart';
 import 'package:flutter/material.dart';
 
-IconData icon = Icons.lock;
+// IconData icon = Icons.remove_red_eye;
 
 Widget commentListItem(
         {required comment,
-        required  name ,
+        name = '',
         required commentId,
-        required isHidden,
+        required bool isHidden,
         context}) =>
     Card(
       elevation: 7,
@@ -18,17 +18,17 @@ Widget commentListItem(
           children: [
             IconButton(
                 onPressed: () {
-                  
                   if (isHidden) {
                     isHidden = !isHidden;
-                    
                   } else {
-                    
                     isHidden = !isHidden;
                   }
-                  CommentCubit.get(context).hidenComment(commentId: commentId, isHidden: isHidden );
+                  CommentCubit.get(context)
+                      .hidenComment(commentId: commentId, isHidden: isHidden);
+                  
+                      CommentCubit.get(context).iconChange(is_hidden: isHidden);
                 },
-                icon: Icon(isHidden?icon = icon = Icons.lock: Icons.remove_red_eye)),
+                icon: Icon(CommentCubit.get(context).icon),),
             const SizedBox(
               width: 20,
             ),

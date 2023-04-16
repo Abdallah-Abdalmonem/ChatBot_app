@@ -19,31 +19,32 @@ class CommentScreen extends StatelessWidget {
     
     return BlocProvider(
       create: (context) {
-        return CommentCubit();
+        return CommentCubit()..getComments(postId: postId).then((value) async {
+            data = await value;
+          });
+       
+         
       },
       child: BlocConsumer<CommentCubit, CommentState>(
         listener: (context, state) {},
         builder: (context, state) {
-          var bloc = CommentCubit.get(context);
+          // var bloc = CommentCubit.get(context);
 
-          bloc.getComments(postId: postId).then((value) async {
-            data = await value;
-          });
-          print('mo!!!!!!!??????????????');
+         
 
-          if (state is SuccessGetCommentState) {
+          
             return Scaffold(
               body: ConditionalBuilder(
-                condition: data != null && data['comments']['data'].length > 0,
+                condition: data != null && data['comments']['data'] != null,
                 builder: (context) => ListView.separated(
                   itemBuilder: (context, index) => commentListItem(
                     comment: data['comments']['data'][index]['message'],
                     commentId: data['comments']['data'][index]['id'],
                     isHidden: data['comments']['data'][index]['is_hidden'],
-                    name:
-                        data['comments']['data'][index]['from']['name'] == null
-                            ? ''
-                            : data['comments']['data'][index]['from']['name'],
+                    // name:
+                    //     data['comments']['data'][index]['from']['name'] == null
+                    //         ? ''
+                    //         : data['comments']['data'][index]['from']['name'],
                     context: context,
                   ),
                   itemCount: data['comments']['data'].length,
@@ -58,18 +59,7 @@ class CommentScreen extends StatelessWidget {
                 ),
               ),
             );
-          } else if (state is ErrorGetCommentState) {
-            return Scaffold(
-              body: Center(
-                child: Text('error'),
-              ),
-            );
-          }else{
-                        return Scaffold(
-              body:  const Center(
-                  child: CircularProgressIndicator(),)
-            );
-          }
+          
         },
       ),
     );

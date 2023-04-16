@@ -1,11 +1,11 @@
 import 'package:chatbot_app/pages/comment_page/bloc_comment/comment_state.dart';
 import 'package:chatbot_app/shared/constant/values.dart';
 import 'package:chatbot_app/shared/network/remote/http_helper.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CommentCubit extends Cubit<CommentState> {
-  
-   CommentCubit() : super(InitialState());
+  CommentCubit() : super(InitialState());
   static CommentCubit get(context) => BlocProvider.of(context);
 
   Future<void> addComment() async {
@@ -50,17 +50,33 @@ class CommentCubit extends Cubit<CommentState> {
     return data;
   }
 
-  Future<void> hidenComment({required commentId, required bool isHidden}) async {
+  Future<void> hidenComment(
+      {required commentId, required bool isHidden}) async {
     emit(LoadingHideCommentState());
-    await Http.hideComment(accessToken: accessToken, is_hidden: isHidden, commentId: commentId)
+    await Http.hideComment(
+            accessToken: accessToken, is_hidden: isHidden, commentId: commentId)
         .then((value) {
       print(value);
       print('comment is hiden now!!!!!!!!!!!!!!!');
-
+  
       emit(SuccessHideCommentState());
     }).catchError((error) {
       emit(ErrorHideCommentState(error.toString()));
       print(error.toString());
     });
+  }
+
+  IconData icon= Icons.remove_red_eye;
+  
+  iconChange({required bool is_hidden}) async {
+    if (is_hidden) {
+      emit(CommentIconNotHidenState());
+     return  icon =Icons.remove_red_eye;
+      
+    } else {
+      emit(CommentIconHidenState());
+      return  icon = Icons.lock;
+      
+    }
   }
 }

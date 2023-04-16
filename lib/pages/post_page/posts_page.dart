@@ -19,17 +19,14 @@ class PostsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         
-        return PostCubit();
+        return PostCubit()..getPost().then((value) async {
+            data = await value;
+          });
       },
       child: BlocConsumer<PostCubit, PostState>(
         listener: (context, state) {},
         builder: (context, state) {
-          var bloc = PostCubit.get(context);
-          bloc.getPost().then((value) async {
-            
-            data = await value;
-           
-          });
+          
           return Scaffold(
             body: ConditionalBuilder(
               condition: data != null,

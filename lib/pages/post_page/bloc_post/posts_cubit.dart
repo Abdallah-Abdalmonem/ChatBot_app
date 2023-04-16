@@ -23,9 +23,10 @@ class PostCubit extends Cubit<PostState> {
           // print(postsId[i]);
         }
       }
+      data = await value;
       emit(SuccessGetPostsState());
       // print(value);
-      data = await value;
+      
     }).catchError((error) {
       emit(ErrorGetPostsState(error.toString()));
       print(error.toString());
