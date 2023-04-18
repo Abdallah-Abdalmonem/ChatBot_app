@@ -32,8 +32,8 @@ class PostsScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return itemPost(
                 // title: '${a.data!['posts']['data'][index]['message']}',
-                title: '${a.posts[index]}',
-                date: '${a.posts[index]}',
+                title: '${a.posts[index]['message']}',
+                date: '${a.posts[index]['createdTime']}',
                 onPress: () {
                   print('object $index');
                 });
