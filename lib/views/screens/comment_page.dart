@@ -13,13 +13,19 @@ class CommentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("CommentScreen!!!!!!!!!!!!!!!!!!");
     // Get.putAsync<getCommentController>(
     //     () async => await getCommentController());
     Get.lazyPut(() => getCommentController());
-    getCommentController controller = Get.find().getComment(postId: postId);
-    var data = controller.getComment(postId: postId);
+    getCommentController controller = Get.find();
+    print("CommentScreentoooo!!!!!!!!!!!!!!!!!!");
+    var data;
+    controller.getComment(postId: postId).then((value) async {
+      data = await value;
+    });
     return Scaffold(
-      body: GetBuilder<getCommentController>(
+      body: GetX<getCommentController>(
+        init: controller,
         builder: (c) {
           return ListView.separated(
             itemBuilder: (context, index) => commentListItem(

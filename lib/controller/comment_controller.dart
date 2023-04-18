@@ -4,12 +4,18 @@ import '../core/constant/lists.dart';
 import '../core/http_helper/http_helper.dart';
 
 class getCommentController extends GetxController {
-  var data;
-  getComment({required postId}) {
+  var data= null.obs;
+  Future getComment({required postId}) async {
+    print('getCommentController @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+
     Http.getComment(accessToken: accessToken, postId: postId)
         .then((value) async {
-      data = await value;
+       data = await value;
+       print('getCommentControllertwoooooo @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+      print(data);
     });
-    return data;
+    update();
+     print('$data getCommentController threeeeeeeeee @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+    return  data;
   }
 }

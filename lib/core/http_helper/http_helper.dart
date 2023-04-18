@@ -18,13 +18,15 @@ class Http {
     required String accessToken,
     required String postId,
   }) async {
+    print("http !!!!!!");
     Uri uri = Uri.parse(
         'https://graph.facebook.com/v12.0/$postId?fields=comments{from,message,id,is_hidden}&access_token=$accessToken');
 
     var response = await http.get(uri);
-    var responseBody = jsonDecode(response.body);
-
-    return responseBody;
+    var responseBody = await jsonDecode(response.body);
+    print("http @@@@@@");
+    print(responseBody);
+    return await responseBody;
   }
 
   static addCommentForComment({
