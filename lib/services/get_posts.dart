@@ -9,11 +9,10 @@ class GetPostsService {
   Future getPosts({required String accessToken}) async {
     Map<String, dynamic> data = await Api().get(accessToken: accessToken);
 
-    // List<PostsModel> postsList = [];
+    var postsList = [];
 
-    // var data2 = await data;
-    // print(
-    //     '******************************************\n${data['posts']['data'][0]['message']}');
+    print(
+        '******************************************\n${data['posts']['data'][0]['message']}');
 
     for (int i = 0; i < data['posts']['data'].length; i++) {
       postsList.add(data['posts']['data'][i]);

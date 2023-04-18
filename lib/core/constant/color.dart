@@ -5,6 +5,8 @@ class AppColor {
   static const Color backgroundColor = Color(0xffA3D9D9);
   static const Color buttongreen = Color(0xff8DAA35);
   static const Color buttonblue = Color(0xff3E5CD6);
+  static const Color appbar = Color(0xff2196F3);
+  static const Color body = Color(0xff1976D3);
 
 //post
 

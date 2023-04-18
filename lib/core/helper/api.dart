@@ -7,7 +7,7 @@ class Api {
     http.Response response = await http.get(Uri.parse(
         'https://graph.facebook.com/me?fields=posts{full_picture,message,created_time}&access_token=$accessToken'));
 
-    // print('@@@@@@@@@@@@@@@@@${response.body}');
+    print('@@@@@@@@@@@@@@@@@${response.body}');
     if (response.statusCode == 200) {
       print(response.body);
       return jsonDecode(response.body);

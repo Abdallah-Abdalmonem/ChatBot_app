@@ -3,6 +3,7 @@ class AppImageAsset {
 
   static const String bot_Image_Blue = '$_rootImages/bot_image_blue.jpg';
   static const String bot_Image_White = '$_rootImages/bot_image_white.jpg';
+  static const String appbar = '$_rootImages/appbar.jpeg';
 
   // static const String rootImages = 'assets';
 
