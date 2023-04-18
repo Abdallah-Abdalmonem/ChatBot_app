@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: themeArabic,
       routes: routes,
-      home: PostsScreen(),
+      home: OnBoarding(),
     );
   }
 }

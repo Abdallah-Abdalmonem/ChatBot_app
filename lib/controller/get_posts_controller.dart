@@ -12,7 +12,7 @@ abstract class GetPostsController extends GetxController {
 
 class GetPostsControllerImp extends GetPostsController {
   Map<String, dynamic>? data = null;
-  List<PostsModel> posts = [];
+  List<dynamic> posts = [];
 
   @override
   getPosts() async {
