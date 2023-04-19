@@ -11,21 +11,12 @@ class PostsModel {
     required this.createdTime,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'message': message,
-      'fullPicture': fullPicture,
-      'createdTime': createdTime,
-    };
-  }
-
-  factory PostsModel.fromJson(Map<String, dynamic> map) {
+  factory PostsModel.fromJson(Map<String, dynamic> data) {
     return PostsModel(
-      id: map['id'] ?? '',
-      message: map['message'] ?? '',
-      fullPicture: map["fullPicture"] ?? '',
-      createdTime: map["createdTime"] ?? '',
+      id: data['id'] ?? '',
+      message: data['message'] ?? '',
+      fullPicture: data["fullPicture"] ?? '',
+      createdTime: data["createdTime"] ?? '',
     );
   }
 }
