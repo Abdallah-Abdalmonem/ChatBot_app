@@ -17,4 +17,16 @@ class getCommentController extends GetxController {
     });
     update();
   }
+
+  void hiddenComment({
+    required String commentId,
+    required bool is_hidden,
+  }) {
+    Http.hideComment(
+      commentId: commentId,
+      is_hidden: is_hidden,
+      accessToken: accessToken,
+    );
+    update();
+  }
 }

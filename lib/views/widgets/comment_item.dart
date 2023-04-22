@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../controller/comment_controller.dart';
 
 IconData icon = Icons.remove_red_eye;
-
+IconData icon2 = Icons.lock;
+getCommentController controller =
+    Get.put(getCommentController(), permanent: true);
 Widget commentListItem(
         {required comment,
         name = '',
@@ -22,8 +27,11 @@ Widget commentListItem(
                 } else {
                   isHidden = !isHidden;
                 }
+
+                controller.hiddenComment(
+                    commentId: commentId, is_hidden: isHidden);
               },
-              icon: Icon(icon),
+              icon: Icon(isHidden ? icon2 : icon),
             ),
             const SizedBox(
               width: 20,
