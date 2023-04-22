@@ -16,11 +16,11 @@ class GetPostsControllerImp extends GetPostsController {
 
   @override
   getPosts() async {
-<<<<<<< HEAD
+
     posts = await GetPostsService().getPosts(accessToken: accessToken);
-=======
-    posts = await GetPostsService().getPosts(accessToken: accessToken1);
->>>>>>> 7282d09c2100bdef7a479a6173807da63bad718a
+
+    // posts = await GetPostsService().getPosts(accessToken: accessToken1);
+
     update();
   }
 

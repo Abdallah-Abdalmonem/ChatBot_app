@@ -11,11 +11,11 @@ class PostsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
+
     GetPostsControllerImp controller = Get.find();
-=======
-    GetPostsControllerImp controller = Get.put(GetPostsControllerImp());
->>>>>>> 7282d09c2100bdef7a479a6173807da63bad718a
+
+    // GetPostsControllerImp controller = Get.put(GetPostsControllerImp());
+
     return Scaffold(
       backgroundColor: AppColor.body,
       appBar: AppBar(

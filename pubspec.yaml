@@ -34,9 +34,8 @@ dependencies:
   flutter_facebook_auth: ^5.0.8
   get: ^4.6.5
   http: ^0.13.5
-  flutter_bloc: ^8.1.2
-  bloc: ^8.1.1
-  # conditional_builder: ^1.0.2
+  conditional_builder_null_safety: ^0.0.6
+  
 
 
 

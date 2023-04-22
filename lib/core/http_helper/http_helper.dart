@@ -25,8 +25,8 @@ class Http {
     var response = await http.get(uri);
     var responseBody = await jsonDecode(response.body);
     print("http @@@@@@");
-    print(responseBody);
-    return await responseBody;
+    // print(responseBody);
+    return  responseBody;
   }
 
   static addCommentForComment({

@@ -1,4 +1,5 @@
 import 'package:chat_bot/views/widgets/comment_item.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 // import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,66 +14,41 @@ class CommentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("CommentScreen!!!!!!!!!!!!!!!!!!");
-    // Get.putAsync<getCommentController>(
-    //     () async => await getCommentController());
-    Get.lazyPut(() => getCommentController());
-    getCommentController controller = Get.find();
-    print("CommentScreentoooo!!!!!!!!!!!!!!!!!!");
-    var data;
-    controller.getComment(postId: postId).then((value) async {
-      data = await value;
-    });
+    getCommentController controller =
+        Get.put(getCommentController(), permanent: true);
+
+    controller.getComment(postId: postId).then((value) async {});
     return Scaffold(
-      body: GetX<getCommentController>(
+      body: GetBuilder<getCommentController>(
         init: controller,
         builder: (c) {
-          return ListView.separated(
-            itemBuilder: (context, index) => commentListItem(
-              comment: data['comments']['data'][index]['message'],
-              commentId: data['comments']['data'][index]['id'],
-              isHidden: data['comments']['data'][index]['is_hidden'],
-              // name:
-              //     data['comments']['data'][index]['from']['name'] == null
-              //         ? ''
-              //         : data['comments']['data'][index]['from']['name'],
-              context: context,
+          return ConditionalBuilder(
+            condition: controller.data.isNotEmpty,
+            fallback: (context) => const Center(
+              child: CircularProgressIndicator(),
             ),
-            itemCount: data['comments']['data'].length,
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(
-                height: 10,
-              );
-            },
+            builder: (context) => ListView.separated(
+              itemBuilder: (context, index) => commentListItem(
+                comment: controller.data['comments']['data'][index]['message'],
+                commentId: controller.data['comments']['data'][index]['id'],
+                isHidden: controller.data['comments']['data'][index]
+                    ['is_hidden'],
+                // name:
+                //     controller.data['comments']['data'][index]['from']['name'] == null
+                //         ? ''
+                //         : controller.data['comments']['data'][index]['from']['name'],
+                context: context,
+              ),
+              itemCount: controller.data['comments']['data'].length,
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(
+                  height: 10,
+                );
+              },
+            ),
           );
         },
       ),
     );
   }
 }
-// ConditionalBuilder(
-          
-        //   condition: data != null && data['comments']['data'] != null,
-        //   builder: (context) => ListView.separated(
-        //     itemBuilder: (context, index) => commentListItem(
-        //       comment: data['comments']['data'][index]['message'],
-        //       commentId: data['comments']['data'][index]['id'],
-        //       isHidden: data['comments']['data'][index]['is_hidden'],
-        //       // name:
-        //       //     data['comments']['data'][index]['from']['name'] == null
-        //       //         ? ''
-        //       //         : data['comments']['data'][index]['from']['name'],
-        //       context: context,
-        //     ),
-        //     itemCount: data['comments']['data'].length,
-        //     separatorBuilder: (BuildContext context, int index) {
-        //       return const SizedBox(
-        //         height: 10,
-        //       );
-        //     },
-        //   ),
-        //   fallback: (context) => const Center(
-        //     child: CircularProgressIndicator(),
-        //   ),
-        // );
-        // 
