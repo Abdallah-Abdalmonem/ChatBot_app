@@ -26,14 +26,14 @@ class PostsScreen extends StatelessWidget {
               icon: const Icon(Icons.show_chart))
         ],
       ),
-      body: GetBuilder<GetPostsControllerImp>(builder: (a) {
+      body: GetBuilder<GetPostsControllerImp>(builder: (e) {
         return ListView.builder(
-          itemCount: a.posts.length,
+          itemCount: e.posts.length,
           itemBuilder: (context, index) {
             return itemPost(
                 // title: '${a.data!['posts']['data'][index]['message']}',
-                title: '${a.posts[index]['message']}',
-                date: '${a.posts[index]['createdTime']}',
+                title: '${e.posts[index].postsModel[index].message}',
+                date: '${e.posts[index].postsModel[index].createdTime}',
                 onPress: () {
                   print('object $index');
                 });

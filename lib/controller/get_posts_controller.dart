@@ -1,4 +1,6 @@
 import 'package:chat_bot/core/constant/lists.dart';
+import 'package:chat_bot/core/helper/api.dart';
+import 'package:chat_bot/models/collection_post_model.dart';
 import 'package:chat_bot/models/posts_model.dart';
 import 'package:chat_bot/services/get_posts.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +13,10 @@ abstract class GetPostsController extends GetxController {
 }
 
 class GetPostsControllerImp extends GetPostsController {
-  Map<String, dynamic>? data = null;
-  List<dynamic> posts = [];
-
+  var posts = [];
   @override
   getPosts() async {
-    posts = await GetPostsService().getPosts(accessToken: accessToken1);
+    posts = await Api().getPosts(accessToken: accessToken1);
     update();
   }
 

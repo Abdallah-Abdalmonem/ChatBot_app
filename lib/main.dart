@@ -1,5 +1,6 @@
 import 'package:chat_bot/core/constant/app_routes.dart';
 import 'package:chat_bot/core/constant/app_theme.dart';
+import 'package:chat_bot/views/screens/create_post_screen.dart';
 import 'package:chat_bot/views/screens/home_screen.dart';
 import 'package:chat_bot/views/screens/login_screen.dart';
 import 'package:chat_bot/views/screens/posts_screen.dart';
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: themeArabic,
+      locale: Locale('ar'),
       routes: routes,
-      home: OnBoarding(),
+      home: CreatePostScreen(),
     );
   }
 }

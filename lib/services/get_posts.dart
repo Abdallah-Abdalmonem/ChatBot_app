@@ -1,23 +1,23 @@
 import 'package:chat_bot/core/constant/lists.dart';
+import 'package:chat_bot/models/collection_post_model.dart';
 import 'package:chat_bot/models/posts_model.dart';
+import 'package:chat_bot/models/test.dart';
 import '../core/helper/api.dart';
 
 class GetPostsService {
-  List postsList = [];
-  List commentsList = [];
-
   Future getPosts({required String accessToken}) async {
-    Map<String, dynamic> data = await Api().get(accessToken: accessToken);
+    List<test> postsList = [];
 
-    List<dynamic> postsList = [];
+    var data = await Api().getPosts(accessToken: accessToken);
 
-    print(
-        '******************************************\n${data['posts']['data'][0]['message']}');
+    print('********************\n data = ${data}');
 
-    for (int i = 0; i < data['posts']['data'].length; i++) {
-      postsList.add(data['posts']['data'][i]);
+    for (var e in data) {
+      postsList.add(test.fromJson(e));
     }
-    // print(postsList);
+
+    print('********************\n posts = ${postsList}');
+
     return postsList;
   }
 }

@@ -2,6 +2,8 @@ import 'package:chat_bot/core/constant/app_routes.dart';
 import 'package:chat_bot/core/constant/app_theme.dart';
 import 'package:chat_bot/core/constant/color.dart';
 import 'package:chat_bot/core/constant/image_assets.dart';
+import 'package:chat_bot/core/constant/lists.dart';
+import 'package:chat_bot/core/helper/api.dart';
 import 'package:chat_bot/views/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -80,7 +82,8 @@ class OnBoarding extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () {
-                  Get.offNamed(AppRoutes.login);
+                  // Get.offNamed(AppRoutes.login);
+                  Api().getPosts(accessToken: accessToken1);
                 },
                 child: const Text('أبدا الان'))
           ],
