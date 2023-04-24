@@ -16,29 +16,32 @@ class PostsScreen extends StatelessWidget {
       backgroundColor: AppColor.body,
       appBar: AppBar(
         elevation: 0,
-        title: Text("Posts"),
+        title: const Text("Posts"),
         backgroundColor: AppColor.appbar,
         actions: [
           IconButton(
-              onPressed: () {
-                controller.getPosts();
+              onPressed: () async {
+                await controller.getPosts();
               },
               icon: const Icon(Icons.show_chart))
         ],
       ),
-      body: GetBuilder<GetPostsControllerImp>(builder: (e) {
-        return ListView.builder(
-          itemCount: e.posts.length,
-          itemBuilder: (context, index) {
-            return itemPost(
-                // title: '${a.data!['posts']['data'][index]['message']}',
-                title: '${e.posts[index].postsModel[index].message}',
-                date: '${e.posts[index].postsModel[index].createdTime}',
-                onPress: () {
-                  print('object $index');
-                });
-          },
-        );
+      body: Obx(() {
+        if (controller.itemCount.value <= 0) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          return ListView.builder(
+            itemCount: controller.itemCount.value,
+            itemBuilder: (context, index) {
+              return itemPost(
+                  title: '${controller.posts[index].message}',
+                  date: '${controller.posts[index].createdTime}',
+                  onPress: () {
+                    print('item $index');
+                  });
+            },
+          );
+        }
       }),
     );
   }
