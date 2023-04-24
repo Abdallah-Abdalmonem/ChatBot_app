@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:chat_bot/core/constant/lists.dart';
-import 'package:chat_bot/services/get_posts.dart';
+import 'package:chat_bot/services/get_posts_service.dart';
 import 'package:chat_bot/views/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';

@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: themeArabic,
       locale: Locale('ar'),
       routes: routes,
-      home: CreatePostScreen(),
+      home: PostsScreen(),
     );
   }
 }

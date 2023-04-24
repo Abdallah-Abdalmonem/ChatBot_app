@@ -1,8 +1,6 @@
 import 'package:chat_bot/core/constant/lists.dart';
-import 'package:chat_bot/core/helper/api.dart';
-import 'package:chat_bot/models/collection_post_model.dart';
 import 'package:chat_bot/models/posts_model.dart';
-import 'package:chat_bot/services/get_posts.dart';
+import 'package:chat_bot/services/get_posts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,15 +11,23 @@ abstract class GetPostsController extends GetxController {
 }
 
 class GetPostsControllerImp extends GetPostsController {
-  var posts = [];
+  GetPostsService getPostsService = GetPostsService();
+
+  List<Data> posts = [];
+  RxInt itemCount = 0.obs;
+
   @override
   getPosts() async {
-    posts = await Api().getPosts(accessToken: accessToken1);
-    update();
+    // posts = await getPostsService.getPosts(accessToken: accessToken1);
+    // count.value = posts.length;
+    // update();
   }
 
   @override
-  void onInit() {
+  void onInit() async {
+    posts = await getPostsService.getPosts(accessToken: accessToken1);
+    itemCount.value = posts.length;
+
     super.onInit();
   }
 

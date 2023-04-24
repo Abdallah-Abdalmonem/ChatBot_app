@@ -5,7 +5,7 @@ import 'package:chat_bot/core/constant/image_assets.dart';
 import 'package:chat_bot/core/constant/lists.dart';
 import 'package:chat_bot/core/helper/api.dart';
 import 'package:chat_bot/models/user_model.dart';
-import 'package:chat_bot/services/get_posts.dart';
+import 'package:chat_bot/services/get_posts_service.dart';
 import 'package:chat_bot/views/screens/posts_screen.dart';
 import 'package:chat_bot/views/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
