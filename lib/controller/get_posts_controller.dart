@@ -18,15 +18,15 @@ class GetPostsControllerImp extends GetPostsController {
 
   @override
   getPosts() async {
-    // posts = await getPostsService.getPosts(accessToken: accessToken1);
-    // count.value = posts.length;
+    posts = await getPostsService.getPosts(accessToken: accessToken1);
+    itemCount.value = posts.length;
     // update();
   }
 
   @override
   void onInit() async {
-    posts = await getPostsService.getPosts(accessToken: accessToken1);
-    itemCount.value = posts.length;
+    // posts = await getPostsService.getPosts(accessToken: accessToken1);
+    // itemCount.value = posts.length;
 
     super.onInit();
   }

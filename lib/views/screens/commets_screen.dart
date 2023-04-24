@@ -8,24 +8,23 @@ import 'package:get/get.dart';
 
 import '../../controller/posts_test_controller.dart';
 
-class PostsScreen extends StatelessWidget {
-  PostsScreen({super.key});
+class CommentsScreen extends StatelessWidget {
+  CommentsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     GetPostsControllerImp controller = Get.put(GetPostsControllerImp());
     return Scaffold(
-      backgroundColor: AppColor.body,
+      backgroundColor: AppColor.white,
       appBar: AppBar(
         elevation: 0,
-        title: const Text("Posts"),
+        title: const Text("Comments"),
         backgroundColor: AppColor.appbar,
         actions: [
           IconButton(
               onPressed: () async {
                 // await controller.getPosts();
-                GetPostsService().getComments(accessToken: accessToken1);
-                // GetPostsService().getComments(accessToken: accessToken1);
+                // // GetPostsService().getComments(accessToken: accessToken1);
               },
               icon: const Icon(Icons.show_chart))
         ],
